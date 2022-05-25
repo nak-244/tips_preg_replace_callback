@@ -56,3 +56,5 @@ function unhtmlentities($string)
     return strtr($string, $trans_tbl);
 }
 ```
+
+コメント：数値エンティティの置換の下2行を書き換えればOKです。

@@ -1,0 +1,2 @@
+# tips_preg_replace_callback
+PHP preg_replace_callbackへの置き換えについて

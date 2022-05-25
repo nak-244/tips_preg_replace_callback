@@ -38,3 +38,21 @@ function unhtmlentities($string)
     return strtr($string, $trans_tbl);
 }
 ```
+
+### 修正後
+```
+/*-----------------------------------------------------
+  ver4用デコード
+------------------------------------------------------*/
+function unhtmlentities($string)
+{
+    // 数値エンティティの置換
+    $string = preg_replace_callback('~&#x([0-9a-f]+);~i', function ($m) {return chr(hexdec($m[1]));}, $string);
+    $string = preg_replace_callback('~&#([0-9]+);~', function ($m) {return chr($m[1]);}, $string);
+
+    // 文字エンティティの置換
+    $trans_tbl = get_html_translation_table(HTML_ENTITIES);
+    $trans_tbl = array_flip($trans_tbl);
+    return strtr($string, $trans_tbl);
+}
+```
